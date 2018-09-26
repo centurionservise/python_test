@@ -5,8 +5,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.scatter import Scatter
 
 Config.set('graphics','resizable','0')
-Config.set('graphics','width','640')
-Config.set('graphics','height','480')
+Config.set('graphics','width',400)
+Config.set('graphics','height',500)
 
 class sergApp(App):
 
