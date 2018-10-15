@@ -4,6 +4,10 @@ import string
 
 
 DB='DB/test_db.db'
+
+# D:\Users\Администратор\Desktop\Python\CODE\DB\test_db1.db
+# DB\test_db.db
+
 # last_id=1
 
 
@@ -24,7 +28,7 @@ cursor.execute("select * from table2")
 row=cursor.fetchone()
 
 while row:
-    # print(row)
+    print(row)
     print(row[0], row[1], row[2], row[3])
     # print(row[1]+'\n')
     last_id=row[0]
@@ -49,8 +53,9 @@ for i in string.ascii_letters:
 rand_age=random.randint(20,80)
 rand_phone=random.randint(1000000,5000000)
 
-# print(list_temp)
+print(list_temp)
 random.shuffle(list_temp)
+print(list_temp)
 
 rand_name=''.join(c for i,c in enumerate(list_temp) if i<10 )
 # print(list_temp)
@@ -58,7 +63,7 @@ rand_name=''.join(c for i,c in enumerate(list_temp) if i<10 )
 # print(type(rand_name))
 
 
-cursor.execute("insert into table2 (ownerName, ownerAge,ownerPhoneNumber) values ('BuTdKK',%s,%s)"%(rand_age,rand_phone))
+cursor.execute("insert into table2 (ownerName, ownerAge,ownerPhoneNumber) values (%s,%s,%s)"%(rand_name, rand_age,rand_phone))
 
 connector.commit()
 
