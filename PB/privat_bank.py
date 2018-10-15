@@ -23,7 +23,7 @@ if from_PB!=None:
         counter+=1
 
     print('----------------------------\n')
-    print(from_PB)
+    # print(from_PB)
     input('To Close - press ENTER')
 else:
     print("Chack Internet Connection or PrivatBank API")
