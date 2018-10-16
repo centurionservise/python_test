@@ -2,7 +2,8 @@ import requests
 import json
 import datetime
 import sqlite3
-import os
+import os, sys
+import msvcrt
 
 #Privat Bank - PB
 DB='PB/privat_api.db'
@@ -11,6 +12,30 @@ try:
     cursor=connector.cursor()
 except:
     print("Was an error witn Data Base...")
+
+# def wait_key():
+#     ''' Wait for a key press on the console and return it. '''
+#     result = None
+#     if os.name == 'nt':
+#         import msvcrt
+#         result = msvcrt.getch()
+#     else:
+#         import termios
+#         fd = sys.stdin.fileno()
+
+#         oldterm = termios.tcgetattr(fd)
+#         newattr = termios.tcgetattr(fd)
+#         newattr[3] = newattr[3] & ~termios.ICANON & ~termios.ECHO
+#         termios.tcsetattr(fd, termios.TCSANOW, newattr)
+
+#         try:
+#             result = sys.stdin.read(1)
+#         except IOError:
+#             pass
+#         finally:
+#             termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
+
+#     return result
 
 def show_all_records():
 
@@ -79,19 +104,25 @@ print("- Show all records [enter 1]")
 print("- Exit  [enter 2]")
 print("- Print  [enter 3]")
 
-answer=input()
+key = msvcrt.getch()
+# os.system("cls")
+# answer=input()
 
-if answer=="1":
+# key=wait_key()
+print(type(key))
+print(str(key))
+
+if str(key)=="b'1'":
     show_all_records()
-elif answer=="2":
+elif str(key)=="b'2'":
     print("Buy")
-elif answer=="3":
+elif str(key)=="b'3'":
     os.startfile('privat_api.txt', "print")
 
 with open( 'privat_api.txt' , 'r' ) as file:
     ccc=file.readlines()
     file.close()
 
-print("From privat_api.txt:\n",ccc)
+# print("From privat_api.txt:\n",ccc)
 
 # os.startfile('privat_api.txt', "print")
