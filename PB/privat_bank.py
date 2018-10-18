@@ -13,30 +13,6 @@ try:
 except:
     print("Was an error witn Data Base...")
 
-# def wait_key():
-#     ''' Wait for a key press on the console and return it. '''
-#     result = None
-#     if os.name == 'nt':
-#         import msvcrt
-#         result = msvcrt.getch()
-#     else:
-#         import termios
-#         fd = sys.stdin.fileno()
-
-#         oldterm = termios.tcgetattr(fd)
-#         newattr = termios.tcgetattr(fd)
-#         newattr[3] = newattr[3] & ~termios.ICANON & ~termios.ECHO
-#         termios.tcsetattr(fd, termios.TCSANOW, newattr)
-
-#         try:
-#             result = sys.stdin.read(1)
-#         except IOError:
-#             pass
-#         finally:
-#             termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
-
-#     return result
-
 def show_all_records():
 
     cursor.execute("select * from Exchange_Rates")
@@ -46,9 +22,6 @@ def show_all_records():
         print(row)
         row=cursor.fetchone()
 
-
-
-
 now = datetime.datetime.now()
 from_PB=None
 
@@ -57,60 +30,55 @@ try:
 except:
     print("Was an error witn request...")
 
-line1='----------------------------------------------'
-line2='            Privat Bank - API'
-# line1='\n----------------------------------------------'
 
+with open( 'privat_api.txt' , 'r' ) as file:
+        file_content=file.readlines()
+print("From privat_api.txt:\n",file_content)
+
+
+line='----------------------------------------------'
+line_header='''----------------------------------------------
+            Privat Bank - API'
+----------------------------------------------'''
+temp_list=[]
+temp_time=None
 if from_PB!=None:
-
-
-    with open('PB/privat_api.txt','w') as file:
-        # file.write( )
-        # file.close()
-
-        print(now.strftime("%d-%m-%Y %H:%M:%S"))
-
-        file.write(now.strftime("%d-%m-%Y %H:%M:%S"))
-        file.write('\n'+line1)
-        file.write('\n'+line2)
-        file.write('\n'+line1)
-        # print('\n----------------------------------------------')
-        print(line1)
-        print(line2)
-        print(line1)
-        # print('      Privat Bank - API')
-        # print('----------------------------------------------')
+        temp_time=now.strftime("%d-%m-%Y %H:%M:%S")
+        print(temp_time)
+        print(line_header)
         counter=1
         for i in from_PB:
             line_main='{}. {}: buy - {:.2f} {} / sale - {:.2f} {}'.format(counter, i['ccy'], float(i['buy']), i['base_ccy'], float(i['sale']),i['base_ccy'])
             # print ('{}. {}: buy - {:.2f} {} / sale - {:.2f} {}'.format(counter, i['ccy'], float(i['buy']), i['base_ccy'], float(i['sale']),i['base_ccy']))
-            file.write('\n'+line_main)
+            temp_list.append(line_main)
             print(line_main)
             counter+=1
             cursor.execute("INSERT INTO Exchange_Rates (ccy,base_ccy,buy,sale,date,time) VALUES (?,?,?,?,?,?)",(i['ccy'], i['base_ccy'],i['buy'],i['sale'],now.strftime("%d-%m-%Y"),now.strftime("%H:%M:%S")))
             connector.commit()
-
-
-        # print('\n----------------------------------------------')
-        print(line1)
-        file.write('\n'+line1)
-        file.close()
-    # print(from_PB)
-    # input('To Close - press ENTER')
+        print(line)
 else:
     print("Chack Internet Connection or PrivatBank API")
 
-print("- Show all records [enter 1]")
-print("- Exit  [enter 2]")
-print("- Print  [enter 3]")
+with open('PB/privat_api.txt','w') as file:
+    file.write(temp_time)
+    file.write('\n'+line_header)
+    for elem in temp_list:
+        file.write('\n'+elem)
+    file.write('\n'+line)
+    # file.close()
+
+# print(temp_list)
+
+
+
+
+print("- Show all records pr. 1")
+print("- Exit  pr. 2")
+print("- Print  pr. 3")
+print("- Read File pr. 4")
 
 key = msvcrt.getch()
-# os.system("cls")
-# answer=input()
-
-# key=wait_key()
-print(type(key))
-print(str(key))
+file_content=None
 
 if str(key)=="b'1'":
     show_all_records()
@@ -118,11 +86,14 @@ elif str(key)=="b'2'":
     print("Buy")
 elif str(key)=="b'3'":
     os.startfile('privat_api.txt', "print")
+elif str(key)=="b'4'":
+    with open( 'privat_api.txt' , 'r' ) as file:
+        file_content=file.readlines()
+        # file_content=file.read()
+        # for line_in_file in file:
+        #     print(line_in_file)
+        # file.close()
 
-with open( 'privat_api.txt' , 'r' ) as file:
-    ccc=file.readlines()
-    file.close()
-
-# print("From privat_api.txt:\n",ccc)
+# print("From privat_api.txt:\n",file_content)
 
 # os.startfile('privat_api.txt', "print")
