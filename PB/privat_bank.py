@@ -119,10 +119,11 @@ elif str(key)=="b'2'":
 elif str(key)=="b'3'":
     os.startfile('privat_api.txt', "print")
 
-with open( 'privat_api.txt' , 'r' ) as file:
-    ccc=file.readlines()
-    file.close()
+if file.closed:
+    with open( 'privat_api.txt' , 'r' ) as file:
+        ccc=file.readlines()
+        file.close()
+    print("From privat_api.txt:\n",ccc)
 
-# print("From privat_api.txt:\n",ccc)
-
+# print("Файл закрыт: ", file.closed)
 # os.startfile('privat_api.txt', "print")
