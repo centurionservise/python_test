@@ -1,9 +1,8 @@
-18-10-2018 18:02:07
+19-10-2018 11:48:24
 ----------------------------------------------
-            Privat Bank - API
+            Privat Bank - API'
 ----------------------------------------------
-1. USD: buy - 27.95 UAH / sale - 28.15 UAH
-2. EUR: buy - 32.00 UAH / sale - 32.60 UAH
+1. USD: buy - 28.00 UAH / sale - 28.20 UAH
+2. EUR: buy - 31.95 UAH / sale - 32.55 UAH
 3. RUR: buy - 0.41 UAH / sale - 0.43 UAH
-4. BTC: buy - 6180.64 USD / sale - 6831.24 USD
-----------------------------------------------
+4. BTC: buy - 6108.25 USD / sale - 6751.23 USD
