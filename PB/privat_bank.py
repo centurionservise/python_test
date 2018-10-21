@@ -6,7 +6,7 @@ import os, sys
 import msvcrt
 
 #Privat Bank - PB
-DB='PB/privat_api.db'
+DB='privat_api.db'
 try:
     connector=sqlite3.connect(DB)
     cursor=connector.cursor()
@@ -29,12 +29,6 @@ try:
     from_PB=(requests.get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')).json()
 except:
     print("Was an error witn request...")
-
-
-with open( 'privat_api.txt' , 'r' ) as file:
-        file_content=file.readlines()
-print("From privat_api.txt:\n",file_content)
-
 
 line='----------------------------------------------'
 line_header='''----------------------------------------------
@@ -59,41 +53,40 @@ if from_PB!=None:
 else:
     print("Chack Internet Connection or PrivatBank API")
 
-with open('PB/privat_api.txt','w') as file:
+with open('privat_api.txt','w') as file:
     file.write(temp_time)
     file.write('\n'+line_header)
     for elem in temp_list:
         file.write('\n'+elem)
     file.write('\n'+line)
-    # file.close()
-
-# print(temp_list)
 
 
+# print("Show BD records - s")
+# print("Print - p")
+# print("Exit - q")
 
+# key = msvcrt.getch()
+# file_content=None
 
-print("- Show all records pr. 1")
-print("- Exit  pr. 2")
-print("- Print  pr. 3")
-print("- Read File pr. 4")
+while True:
+    print('********************')
+    print("Show BD records - s")
+    print("Print - p")
+    print("Exit - q")
+    print('********************')
 
-key = msvcrt.getch()
-file_content=None
+    key = msvcrt.getch()
+    file_content=None
 
-if str(key)=="b'1'":
-    show_all_records()
-elif str(key)=="b'2'":
-    print("Buy")
-elif str(key)=="b'3'":
-    os.startfile('privat_api.txt', "print")
-elif str(key)=="b'4'":
-    with open( 'privat_api.txt' , 'r' ) as file:
-        file_content=file.readlines()
-        # file_content=file.read()
-        # for line_in_file in file:
-        #     print(line_in_file)
-        # file.close()
-
-# print("From privat_api.txt:\n",file_content)
-
-# os.startfile('privat_api.txt', "print")
+    if str(key)=="b's'":
+        show_all_records()
+        # break
+    elif str(key)=="b'q'":
+        print("Buy")
+        break
+    elif str(key)=="b'p'":
+        os.startfile('privat_api.txt', "print")
+    # elif str(key)=="b'4'":
+    #     with open( 'privat_api.txt' , 'r' ) as file:
+    #         file_content=file.readlines()
+    #     print("From privat_api.txt:\n",file_content)
