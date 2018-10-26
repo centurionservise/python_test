@@ -1,0 +1,1 @@
+pyuic5 serg_test.ui -o serg_test.py
