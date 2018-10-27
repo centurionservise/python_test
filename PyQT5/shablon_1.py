@@ -1,6 +1,6 @@
 import sys
 # Импортируем наш интерфейс из файла
-from pb_gui import *
+from Ui_test import Ui_MainWindow
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class MyWin(QtWidgets.QMainWindow):
@@ -10,12 +10,12 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         # Здесь прописываем событие нажатия на кнопку        
-        self.ui.pushButton.clicked.connect(self.MyFunction)
+        self.ui.pushButton_1.clicked.connect(self.MyFunction)
 
     # Пока пустая функция которая выполняется
     # при нажатии на кнопку                  
     def MyFunction(self):
-        self.ui.label_2.setText('Rover')
+        self.ui.label_1.setText('Rover')
 
 if __name__=="__main__":
     app = QtWidgets.QApplication(sys.argv)

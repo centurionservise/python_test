@@ -1,18 +1,18 @@
 import sys  # sys нужен для передачи argv в QApplication
 import os  # Отсюда нам понадобятся методы для отображения содержимого директорий
 from PyQt5 import uic
-
 from PyQt5 import QtWidgets
+from Ui_test import Ui_MainWindow
 
 # import design  # Это наш конвертированный файл дизайна
 
-class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
+class ExampleApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         # Это здесь нужно для доступа к переменным, методам
-        # и т.д. в файле design.py
+        # и т.д. в нашем файле ui файде
         super().__init__()
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
-        self.btnBrowse.clicked.connect(self.browse_folder)  # Выполнить функцию browse_folder
+        # self.btnBrowse.clicked.connect(self.browse_folder)  # Выполнить функцию browse_folder
                                                             # при нажатии кнопки
 
     def browse_folder(self):

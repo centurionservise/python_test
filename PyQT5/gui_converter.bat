@@ -1,1 +1,1 @@
-pyuic5 serg_test.ui -o serg_test.py
+pyuic5 ui_test.ui -o ui_test.py
