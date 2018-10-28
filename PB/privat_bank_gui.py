@@ -38,8 +38,8 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
         super().__init__()
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         # self.setWindowTitle("Hello world")
-        self.connector, self.cursor=self.db_connect(self.DB)
-        self.lcdNumber.display(self.records_count(self.cursor))
+        self.connector, self.cursor=self.db_connect()
+        self.lcdNumber.display(self.records_count())
         # self.btn_request.clicked.connect(self.main_func(self.get_req(self.url),self.cursor, self.connector,self.privat_txt))
         self.btn_request.clicked.connect(self.main_func)
     
@@ -49,11 +49,11 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
     #     # window.setWindowTitle("PyQt")
     #     pass
 
-    def records_count(self, cursor):
+    def records_count(self):
         '''Function return amount of records in DB'''
         try:
-            cursor.execute("SELECT * FROM Exchange_Rates WHERE ccy='USD'")
-            row=cursor.fetchall()
+            self.cursor.execute("SELECT * FROM Exchange_Rates WHERE ccy='USD'")
+            row=self.cursor.fetchall()
             return(len(row))
         except sqlite3.DatabaseError as DB_error:
             # print("def records_count ->")
@@ -61,10 +61,10 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
             print("sqlite3.DatabaseError: ",DB_error)
             return 0
 
-    def db_connect(self, db_name):
+    def db_connect(self):
         '''Function get DB name, connects and return DB Tuple - (connector, cursor)'''
         try:
-            connector=sqlite3.connect(db_name)
+            connector=sqlite3.connect(self.DB)
             cursor=connector.cursor()
             new_table="CREATE TABLE IF NOT EXISTS Exchange_Rates (id INTEGER,ccy STRING,base_ccy STRING,buy REAL,sale REAL,date TEXT,time TEXT)"
             cursor.execute(new_table)
@@ -76,7 +76,7 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
     def get_req(self, temp_url):
         '''Function gets Data by Url and returns result of request''' 
         try:
-            print("ZZZ")
+            # print("ZZZ")
             return (requests.get(temp_url)).json()
         except :
             print("There was an error with the request")
@@ -85,7 +85,7 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
 
     def main_func(self):
         from_PB=self.get_req(self.url)
-        temp_id=self.records_count(self.cursor)+1
+        temp_id=self.records_count()+1
         # print(temp_id)
         temp_list=[]
         temp_time=None
@@ -123,7 +123,7 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
                     file.write('\n'+elem)
                 file.write('\n'+self.line)
 
-            self.lcdNumber.display(self.records_count(self.cursor))
+            self.lcdNumber.display(self.records_count())
         
         else:
             # print("Chack Internet Connection or PrivatBank API url")
