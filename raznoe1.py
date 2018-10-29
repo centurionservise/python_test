@@ -83,7 +83,7 @@ print(max(set(a), key=a.count))
 from collections import Counter
 a = [1, 2, 3, 1, 2, 3, 2, 2, 4, 5, 1]
 print(a)
-print(type a)
+print(type(a))
 cnt = Counter(a)
 print(cnt.most_common(1))
 # print(cnt.)

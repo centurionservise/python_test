@@ -1,0 +1,22 @@
+INFO:root:['a', 'b', 'c', 11]
+INFO:root:[22]
+INFO:root:[22, 33]
+INFO:root:['a', 'b', 'c', 11]
+INFO:root:[22]
+INFO:root:[22, 33]
+INFO:root:['a', 'b', 'c', 11]
+INFO:root:[22]
+INFO:root:[22, 33]
+INFO:root:['a', 'b', 'c', 11]
+INFO:root:[22]
+INFO:root:[22, 33]
+INFO:root:CCCCC
+INFO:root:CCCCC
+INFO:root:CCCCC
+raznoe3.py[LINE:14]# INFO     [2018-10-03 15:36:49,694]  CCCCC
+raznoe3.py[LINE:14]# INFO     [2018-10-03 15:36:49,696]  CCCCC
+raznoe3.py[LINE:14]# INFO     [2018-10-03 15:36:49,696]  CCCCC
+raznoe3.py[LINE:14]# INFO     [2018-10-03 16:01:37,807]  ghjkhgjhgjh
+raznoe3.py[LINE:19]# INFO     [2018-10-03 16:01:37,809]  CCCCC
+raznoe3.py[LINE:19]# INFO     [2018-10-03 16:01:37,813]  CCCCC
+raznoe3.py[LINE:19]# INFO     [2018-10-03 16:01:37,814]  CCCCC
