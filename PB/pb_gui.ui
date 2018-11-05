@@ -6,72 +6,42 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>646</width>
-    <height>822</height>
+    <width>914</width>
+    <height>384</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
   </property>
-  <widget class="QProgressBar" name="progressBar">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
+  <property name="windowTitle">
+   <string>Privat Bank API</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>PB images.ico</normaloff>PB images.ico</iconset>
+  </property>
+  <widget class="QPushButton" name="btn_exit">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>480</y>
-     <width>371</width>
-     <height>23</height>
+     <x>440</x>
+     <y>350</y>
+     <width>118</width>
+     <height>24</height>
     </rect>
    </property>
-   <property name="value">
-    <number>0</number>
+   <property name="text">
+    <string>Выход</string>
    </property>
-  </widget>
-  <widget class="QTableWidget" name="tableWidget">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>520</y>
-     <width>471</width>
-     <height>192</height>
-    </rect>
-   </property>
-   <property name="sortingEnabled">
-    <bool>false</bool>
-   </property>
-   <property name="rowCount">
-    <number>0</number>
-   </property>
-   <column>
-    <property name="text">
-     <string>валюта</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>покупка</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>продажа</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>базовая валюта</string>
-    </property>
-   </column>
   </widget>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>194</y>
-     <width>371</width>
-     <height>281</height>
+     <x>520</x>
+     <y>10</y>
+     <width>381</width>
+     <height>301</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_result_box">
@@ -84,11 +54,17 @@
           <pointsize>14</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-color: rgb(0, 170, 255);</string>
+        </property>
         <property name="text">
          <string>Карта</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="buddy">
+         <cstring>textEdit</cstring>
         </property>
        </widget>
       </item>
@@ -104,6 +80,9 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="buddy">
+         <cstring>textEdit</cstring>
         </property>
        </widget>
       </item>
@@ -141,16 +120,29 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_print">
+       <widget class="QPushButton" name="pushButton">
         <property name="text">
-         <string>Печать</string>
+         <string>Selecect All</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_exit">
+       <widget class="QPushButton" name="pushButton_2">
         <property name="text">
-         <string>Выход</string>
+         <string>Copy</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_print">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Print Tool Tip&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="whatsThis">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Print command What this&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>Печать</string>
         </property>
        </widget>
       </item>
@@ -161,8 +153,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>13</y>
+     <x>10</x>
+     <y>10</y>
      <width>471</width>
      <height>48</height>
     </rect>
@@ -267,13 +259,52 @@ p, li { white-space: pre-wrap; }
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>83</y>
-     <width>471</width>
-     <height>51</height>
+     <x>230</x>
+     <y>70</y>
+     <width>252</width>
+     <height>239</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <item>
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Выбор записи</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="buddy">
+       <cstring>calendarWidget</cstring>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QCalendarWidget" name="calendarWidget"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="text">
+         <string>Загрузить</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>211</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_5">
     <item>
      <widget class="QLabel" name="label_6">
       <property name="font">
@@ -287,57 +318,86 @@ p, li { white-space: pre-wrap; }
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="buddy">
+       <cstring>horizontalSlider_sel_record</cstring>
+      </property>
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <widget class="QLCDNumber" name="lcdNumber_sel_record">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 255);
+</string>
+      </property>
+      <property name="smallDecimalPoint">
+       <bool>false</bool>
+      </property>
+      <property name="digitCount">
+       <number>3</number>
+      </property>
+      <property name="segmentStyle">
+       <enum>QLCDNumber::Filled</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QSlider" name="horizontalSlider_sel_record">
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>15</number>
+        </property>
+        <property name="value">
+         <number>1</number>
+        </property>
+        <property name="sliderPosition">
+         <number>1</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="invertedAppearance">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
-         <widget class="QSlider" name="horizontalSlider_sel_record">
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>15</number>
-          </property>
-          <property name="value">
-           <number>1</number>
-          </property>
-          <property name="sliderPosition">
-           <number>1</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="invertedAppearance">
-           <bool>false</bool>
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>&lt;--</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLCDNumber" name="lcdNumber_sel_record">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
+         <widget class="QPushButton" name="pushButton_5">
+          <property name="text">
+           <string>--&gt;</string>
           </property>
          </widget>
         </item>
        </layout>
       </item>
-      <item>
-       <widget class="QPushButton" name="btn_load">
-        <property name="text">
-         <string>Загрузить</string>
-        </property>
-       </widget>
-      </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_load">
+      <property name="text">
+       <string>Загрузить</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -349,13 +409,51 @@ p, li { white-space: pre-wrap; }
   <zorder>label_4</zorder>
   <zorder>label_5</zorder>
   <zorder>label_date</zorder>
-  <zorder>progressBar</zorder>
   <zorder>horizontalSlider_sel_record</zorder>
-  <zorder>lcdNumber_sel_record</zorder>
   <zorder>btn_load</zorder>
   <zorder>label_6</zorder>
-  <zorder>tableWidget</zorder>
+  <zorder>btn_load</zorder>
+  <zorder>label</zorder>
+  <zorder>btn_exit</zorder>
+  <zorder>calendarWidget</zorder>
+  <zorder>pushButton_3</zorder>
+  <zorder>label_7</zorder>
+  <zorder>pushButton_4</zorder>
+  <zorder>pushButton_5</zorder>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>selectAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>740</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>904</x>
+     <y>238</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>copy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>813</x>
+     <y>347</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>917</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
