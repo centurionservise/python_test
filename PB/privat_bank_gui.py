@@ -5,6 +5,9 @@ from PyQt5 import QtWidgets
 from Ui_pb_gui import Ui_Form
 
 import requests
+# from multiprocessing import Queue
+# from idna import idnadata
+
 import json
 import datetime
 import sqlite3
@@ -31,23 +34,42 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
         self.url='https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'
         # cursor=None
         # connector=None
-        self.line='----------------------------------------------'
+        self.line_empty='----------------------------------------------'
         self.line_header='''----------------------------------------------
             Privat Bank - API
-            ----------------------------------------------'''
+----------------------------------------------'''
         super().__init__()
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         # self.setWindowTitle("Hello world")
         self.connector, self.cursor=self.db_connect()
         self.lcdNumber.display(self.records_count())
+        # self.lcdNumber.
+
+        self.horizontalSlider_sel_record.setMinimum(1)
+        self.horizontalSlider_sel_record.setMaximum(self.records_count())
+        self.horizontalSlider_sel_record.setValue(1)
+
+        self.lcdNumber_sel_record.display(self.horizontalSlider_sel_record.value())
+        self.horizontalSlider_sel_record.valueChanged.connect(self.select_record)
         # self.btn_request.clicked.connect(self.main_func(self.get_req(self.url),self.cursor, self.connector,self.privat_txt))
         self.btn_request.clicked.connect(self.main_func)
+        self.btn_exit.clicked.connect(self.close)
+        self.btn_load.clicked.connect(self.get_record)
+
+        self.period=self.get_period()
+        self.label_period_start.setText(self.period[0])
+        self.label_period_end.setText(self.period[1])
+        # self.label_period_end.text(self.period[1])
+ 
     
     # def CopyText(self):
     #     self.textEdit_1.append(self.lineEdit_1.text())
     #     self.lineEdit_1.setText("SERG")
     #     # window.setWindowTitle("PyQt")
     #     pass
+    def select_record(self):
+        # self.horizontalSlider_sel_record.setMaximum(self.records_count())
+        self.lcdNumber_sel_record.display(self.horizontalSlider_sel_record.value())
 
     def records_count(self):
         '''Function return amount of records in DB'''
@@ -58,6 +80,49 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
         except sqlite3.DatabaseError as DB_error:
             # print("def records_count ->")
             # print("Error was found with DB or table ...")
+            print("sqlite3.DatabaseError: ",DB_error)
+            return 0
+
+
+    def get_period (self):
+        '''Function return period of records in DB'''
+        try:
+            self.cursor.execute("SELECT * FROM Exchange_Rates WHERE ccy='USD'")
+            row=self.cursor.fetchall()
+            # print(row[0][5])
+            # print(row[-1][5])
+
+            if len(row)>2:
+                return (row[0][5],row[-1][5])
+            else:
+                return (row[0][5],row[0][5])
+
+        except sqlite3.DatabaseError as DB_error:
+            print("sqlite3.DatabaseError: ",DB_error)
+            return 0
+    
+    def get_record (self):
+        '''Function return exect records from DB'''
+        try:
+            record_number=self.horizontalSlider_sel_record.value()
+            self.cursor.execute("SELECT * FROM Exchange_Rates WHERE id='{}'".format(record_number))
+            row=self.cursor.fetchall()
+
+            self.textEdit.clear()
+
+            for record in row:
+                temp_str=str(record[1])+"   "+str(record[2])+"   "+str(record[3])+"   "+str(record[4])
+                self.textEdit.append(temp_str)
+                self.label_date.setText(str(record[5]))
+            # print(row)
+            # print(row[-1][5])
+
+            # if len(row)>2:
+            #     return (row[0][5],row[-1][5])
+            # else:
+            #     return (row[0][5],row[0][5])
+
+        except sqlite3.DatabaseError as DB_error:
             print("sqlite3.DatabaseError: ",DB_error)
             return 0
 
@@ -95,10 +160,12 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
 
         if from_PB!=None:
             temp_time=now.strftime("%d-%m-%Y %H:%M:%S")
-            self.label_date.setText(temp_time)
+            self.label_date.setText(now.strftime("%d-%m-%Y"))
             # print(temp_time)
             # print(self.line_header)
             counter=1
+            self.textEdit.clear()
+            
             for i in from_PB:
                 line_main='{}. {}: buy - {:.2f} {} / sale - {:.2f} {}'.format(counter, i['ccy'], float(i['buy']), i['base_ccy'], float(i['sale']),i['base_ccy'])
                 temp_list.append(line_main)
@@ -114,16 +181,17 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
                     print("Error SQLite3: ", err)
                 else:
                     self.connector.commit()
-            # print(self.line)
+            # print(self.line_empty)
 
             with open(self.privat_txt,'w') as file:
                 file.write(temp_time)
                 file.write('\n'+self.line_header)
                 for elem in temp_list:
                     file.write('\n'+elem)
-                file.write('\n'+self.line)
+                file.write('\n'+self.line_empty)
 
             self.lcdNumber.display(self.records_count())
+            self.horizontalSlider_sel_record.setMaximum(self.records_count())
         
         else:
             # print("Chack Internet Connection or PrivatBank API url")

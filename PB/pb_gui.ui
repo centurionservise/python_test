@@ -6,86 +6,108 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>535</width>
-    <height>440</height>
+    <width>646</width>
+    <height>822</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label_date">
+  <widget class="QProgressBar" name="progressBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>10</y>
-     <width>78</width>
-     <height>16</height>
+     <x>60</x>
+     <y>480</y>
+     <width>371</width>
+     <height>23</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
+   <property name="value">
+    <number>0</number>
    </property>
-   <property name="text">
-    <string>Время / Дата</string>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>520</y>
+     <width>471</width>
+     <height>192</height>
+    </rect>
    </property>
+   <property name="sortingEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="rowCount">
+    <number>0</number>
+   </property>
+   <column>
+    <property name="text">
+     <string>валюта</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>покупка</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>продажа</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>базовая валюта</string>
+    </property>
+   </column>
   </widget>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>40</y>
-     <width>152</width>
-     <height>25</height>
+     <x>60</x>
+     <y>194</y>
+     <width>371</width>
+     <height>281</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_result_box">
     <item>
-     <widget class="QLabel" name="label_2">
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Записей в БД</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLCDNumber" name="lcdNumber">
-      <property name="intValue" stdset="0">
-       <number>0</number>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>26</x>
-     <y>81</y>
-     <width>481</width>
-     <height>254</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="label">
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Последний запрос</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_result_data">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Карта</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_date">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Дата</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <widget class="QTextEdit" name="textEdit">
@@ -110,11 +132,11 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_btns">
       <item>
        <widget class="QPushButton" name="btn_request">
         <property name="text">
-         <string>Запрос</string>
+         <string>Запрос PB API</string>
         </property>
        </widget>
       </item>
@@ -136,17 +158,203 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <zorder>textEdit</zorder>
-  <zorder>label</zorder>
-  <zorder>btn_request</zorder>
-  <zorder>btn_print</zorder>
-  <zorder>btn_exit</zorder>
-  <zorder>label_2</zorder>
-  <zorder>lcdNumber</zorder>
-  <zorder>label_2</zorder>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>13</y>
+     <width>471</width>
+     <height>48</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Записей в БД</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLCDNumber" name="lcdNumber">
+        <property name="intValue" stdset="0">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Период</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>с: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_period_start">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Начало</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>По: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_period_end">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Конец</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>83</y>
+     <width>471</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLabel" name="label_6">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Выбор записи</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QSlider" name="horizontalSlider_sel_record">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>15</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+          <property name="sliderPosition">
+           <number>1</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="invertedAppearance">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLCDNumber" name="lcdNumber_sel_record">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_load">
+        <property name="text">
+         <string>Загрузить</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>label_period_start</zorder>
+  <zorder>label_period_end</zorder>
+  <zorder>label_3</zorder>
   <zorder>label_4</zorder>
-  <zorder>label_4</zorder>
+  <zorder>label_5</zorder>
   <zorder>label_date</zorder>
+  <zorder>progressBar</zorder>
+  <zorder>horizontalSlider_sel_record</zorder>
+  <zorder>lcdNumber_sel_record</zorder>
+  <zorder>btn_load</zorder>
+  <zorder>label_6</zorder>
+  <zorder>tableWidget</zorder>
  </widget>
  <resources/>
  <connections/>
