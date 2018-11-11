@@ -58,6 +58,8 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
         self.btn_load_calendar.clicked.connect(self.get_record_calendar)
         self.btn_left.clicked.connect(self.move_left)
         self.btn_right.clicked.connect(self.move_right)
+        self.btn_copy.clicked.connect(self.copy_text)
+        self.btn_print.clicked.connect(self.print_result)
 
         self.period=self.get_period()
         self.label_period_start.setText(self.period[0])
@@ -70,6 +72,25 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
     #     self.lineEdit_1.setText("SERG")
     #     # window.setWindowTitle("PyQt")
     #     pass
+    # def 
+    def print_text(self,temp_text):
+        import tempfile
+        import win32api
+        import win32print
+        filename=tempfile.mktemp('.txt')
+        open(filename,'w').write(temp_text)
+        win32api.ShellExecute(0,'printto',filename,'"%s"' % win32print.GetDefaultPrinter(),'.',0)
+
+    def print_result(self):
+        # print(self.textEdit.toPlainText())
+        text_from_textEdit=self.textEdit.toPlainText()
+        if text_from_textEdit:
+            self.print_text(text_from_textEdit)
+
+    def copy_text(self):
+        # self.textEdit.selectAll()
+        self.textEdit.copy()
+        
     def move_left(self):
         self.horizontalSlider_sel_record.setValue(self.horizontalSlider_sel_record.sliderPosition()-1)
     def move_right(self):
@@ -84,16 +105,16 @@ class SergWindow(QtWidgets.QMainWindow, Ui_Form):
 
             if row:
                 self.textEdit.clear()
-                counter_big=1
+                # counter_big=1
                 counter_small=1
-                self.textEdit.append('Record '+str(counter_big)+':')
+                self.textEdit.append('Record '+str(row[0][0])+':')
                 self.label_date.setText(date)
 
                 for record in row:
                     if counter_small==5:
                         self.textEdit.append('')
-                        counter_big+=1
-                        self.textEdit.append('Record '+str(counter_big)+':')
+                        # counter_big+=1
+                        self.textEdit.append('Record '+str(record[0])+':')
                         counter_small=1  
                     temp_str=str(record[1])+"   "+str(record[2])+"   "+str(record[3])+"   "+str(record[4])
                     self.textEdit.append(temp_str)
