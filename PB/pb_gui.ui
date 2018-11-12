@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>914</width>
-    <height>384</height>
+    <width>820</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="font">
@@ -25,8 +25,8 @@
   <widget class="QPushButton" name="btn_exit">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>350</y>
+     <x>360</x>
+     <y>370</y>
      <width>118</width>
      <height>24</height>
     </rect>
@@ -35,13 +35,13 @@
     <string>Выход</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>10</y>
-     <width>381</width>
-     <height>301</height>
+     <x>270</x>
+     <y>100</y>
+     <width>311</width>
+     <height>241</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_result_box">
@@ -114,20 +114,17 @@ p, li { white-space: pre-wrap; }
      <layout class="QHBoxLayout" name="horizontalLayout_btns">
       <item>
        <widget class="QPushButton" name="btn_request">
+        <property name="styleSheet">
+         <string notr="true">
+</string>
+        </property>
         <property name="text">
-         <string>Запрос PB API</string>
+         <string>Новый запрос</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>Selecect All</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btn_copy">
         <property name="text">
          <string>Copy</string>
         </property>
@@ -150,12 +147,12 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>471</width>
+     <x>130</x>
+     <y>20</y>
+     <width>591</width>
      <height>48</height>
     </rect>
    </property>
@@ -256,11 +253,11 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>70</y>
+     <x>10</x>
+     <y>100</y>
      <width>252</width>
      <height>239</height>
     </rect>
@@ -306,11 +303,11 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>70</y>
+     <x>590</x>
+     <y>100</y>
      <width>211</width>
      <height>241</height>
     </rect>
@@ -412,46 +409,44 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>801</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>350</y>
+     <width>811</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
-  <zorder>label_period_start</zorder>
-  <zorder>label_period_end</zorder>
-  <zorder>label_3</zorder>
-  <zorder>label_4</zorder>
-  <zorder>label_5</zorder>
-  <zorder>label_date</zorder>
-  <zorder>horizontalSlider_sel_record</zorder>
-  <zorder>btn_load</zorder>
-  <zorder>label_6</zorder>
-  <zorder>btn_load</zorder>
-  <zorder>label</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
   <zorder>btn_exit</zorder>
-  <zorder>calendarWidget</zorder>
-  <zorder>btn_load_calendar</zorder>
-  <zorder>label_calendar</zorder>
-  <zorder>btn_left</zorder>
-  <zorder>btn_right</zorder>
+  <zorder>line</zorder>
+  <zorder>line_2</zorder>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>textEdit</receiver>
-   <slot>selectAll()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>740</x>
-     <y>344</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>904</x>
-     <y>238</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_2</sender>
+   <sender>btn_copy</sender>
    <signal>clicked()</signal>
    <receiver>textEdit</receiver>
    <slot>copy()</slot>
